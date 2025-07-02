@@ -1,0 +1,19 @@
+# VS + .NET build
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.pdb
+*.dll
+*.cache
+
+# Node/Angular build
+node_modules/
+dist/
+.env
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
