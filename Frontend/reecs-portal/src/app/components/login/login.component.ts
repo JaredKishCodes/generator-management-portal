@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,],
+  imports: [CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

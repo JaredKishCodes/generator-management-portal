@@ -5,8 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ReecsPortal.Application.Interfaces;
+using ReecsPortal.Application.Services;
+using ReecsPortal.Domain.Interfaces;
 using ReecsPortal.Infrastructure.Auth.Persistence;
 using ReecsPortal.Infrastructure.Identity.Service;
+using ReecsPortal.Infrastructure.Repositories;
 
 namespace ReecsPortal.Infrastructure
 {
@@ -21,8 +24,9 @@ namespace ReecsPortal.Infrastructure
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IGeneratorRepository, GeneratorRepository>();
 
-           
+
 
 
             services.AddAuthentication(options =>
