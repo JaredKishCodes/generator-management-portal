@@ -12,7 +12,7 @@ namespace ReecsPortal.Application.Interfaces
     {
         Task<IEnumerable<TblGenerator>> GetAllGeneratorsAsync();
         Task<GenResponse> CreateGeneratorAsync(GenRequest generator);
-        Task<GenResponse> UpdateGeneratorAsync(GenRequest generator);
+        Task<GenResponse> UpdateGeneratorAsync(UpdateGenRequest generator, int genCode);
         Task<bool> DeleteGeneratorAsync(int id);
     }
 }

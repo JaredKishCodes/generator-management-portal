@@ -1,0 +1,13 @@
+.nav-link:hover {
+    background-color: #f8f9fa !important; /* Light gray */
+    color: #000 !important;    /* Change text color on hover */
+    border-radius: 4px;        /* Optional: rounded effect */
+  }
+
+  .logout-hover:hover{
+ background-color: #c93030 !important; /* Light gray */
+    color: #000 !important;  
+  }
+
+ 
+  

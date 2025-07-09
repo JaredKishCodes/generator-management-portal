@@ -1,90 +1,98 @@
+@if (isLoading) {
+  <div
+    class="position-fixed top-0 start-50 translate-middle-x mt-3 bg-white border rounded shadow px-4 py-2 text-dark text-center z-3"
+    style="min-width: 200px;"
+  >
+    <div class="spinner-border spinner-border-sm text-success me-2" role="status"></div>
+    Logging in...
+  </div>
+}
+
 <section
-  class="min-h-screen flex items-center justify-center bg-cover bg-center"
-  style="background-image: url('assets/pexels-tomfisk-9893727.jpg');"
+  class="min-vh-100 d-flex align-items-center justify-content-center"
+  style="background-image: url('assets/pexels-tomfisk-9893727.jpg'); background-size: cover; background-position: center;"
 >
-  <div class="bg-white/30 backdrop-blur-md p-8 rounded-lg shadow-lg w-full max-w-md">
-    <div class="flex justify-center mb-4">
-      <img src="assets/logo-3r.png" alt="Logo" class="h-16" />
+  <div class="p-4 rounded shadow-lg w-100" style="max-width: 500px; background-color: rgba(255, 255, 255, 0.9);">
+    <!-- Logo -->
+    <div class="d-flex justify-content-center mb-4">
+      <img src="assets/logo-3r.png" alt="Logo" style="height: 64px;" />
     </div>
 
     <!-- Register Form -->
     <ng-container *ngIf="toggleForm; else loginForm">
-  <h2 class="text-2xl font-bold mb-6 text-center text-white">Create Account</h2>
-  <form>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label class="block text-white text-sm mb-1" >Contact Name</label>
-        <input type="text" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Contact Address</label>
-        <input type="text" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Contact Number</label>
-        <input type="text" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Access Type</label>
-        <input type="text" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Email Address</label>
-        <input type="email" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Username</label>
-        <input type="text" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Password</label>
-        <input type="password" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div>
-        <label class="block text-white text-sm mb-1">Confirm Password</label>
-        <input type="password" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
-      </div>
-      <div></div> <!-- Empty div for spacing if needed -->
-    </div>
+      <h2 class="text-center text-dark fw-bold mb-4">Create Account</h2>
+      <form (ngSubmit)="onRegister()">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label text-dark">Contact Name</label>
+            <input [(ngModel)]="registerObj.contactName" name="contactName" type="text" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Contact Address</label>
+            <input [(ngModel)]="registerObj.contactAddress" name="contactAddress" type="text" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Contact Number</label>
+            <input [(ngModel)]="registerObj.contactNumber" name="contactNumber" type="text" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Access Type</label>
+            <input [(ngModel)]="registerObj.accessType" name="accessType" type="text" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Email Address</label>
+            <input [(ngModel)]="registerObj.username" name="email" type="email" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Username</label>
+            <input [(ngModel)]="registerObj.contactName" name="username" type="text" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Password</label>
+            <input [(ngModel)]="registerObj.confirmPassword" name="password" type="password" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-dark">Confirm Password</label>
+            <input [(ngModel)]="registerObj.contactName" name="confirmPassword" type="password" class="form-control" />
+          </div>
+        </div>
 
-    <button type="button" class="mt-6 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-      Register
-    </button>
-  </form>
+        <button type="submit" class="btn btn-primary w-100 mt-4">Register</button>
+      </form>
 
-  <p class="text-sm text-white text-center mt-4">
-    Already have an account?
-    <a (click)="toggleForm = false" class="cursor-pointer text-blue-200 underline">Login here</a>
-  </p>
-</ng-container>
-
+      <p class="text-center text-dark mt-3 small">
+        Already have an account?
+        <a (click)="toggleForm = false" class="text-decoration-underline" style="cursor: pointer;">Login here</a>
+      </p>
+    </ng-container>
 
     <!-- Login Form -->
     <ng-template #loginForm>
-      <h2 class="text-2xl font-bold mb-6 text-center text-white">Login to your account</h2>
-      <form>
-        <div class="mb-4">
-          <label class="block text-white text-sm mb-1">Username</label>
-          <input type="email" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
+      <h2 class="text-center text-dark fw-bold mb-4">Login to your account</h2>
+      <form (ngSubmit)="onLogin()">
+        <div class="mb-3">
+          <label class="form-label text-dark">Username</label>
+          <input [(ngModel)]="loginObj.username" name="logUsername" type="text" class="form-control" />
         </div>
-        <div class="mb-4">
-          <label class="block text-white text-sm mb-1">Password</label>
-          <input type="password" class="w-full px-4 py-2 bg-white/70 rounded-lg" />
+        <div class="mb-3">
+          <label class="form-label text-dark">Password</label>
+          <input [(ngModel)]="loginObj.password" name="logPassword" type="password" class="form-control" />
         </div>
-        <div class="flex items-center justify-between mb-6 text-white">
-          <label class="inline-flex items-center">
-            <input type="checkbox" />
-            <span class="ml-2 text-sm">Remember me</span>
-          </label>
-          <a href="#" class="text-sm text-blue-200 hover:underline">Forgot password?</a>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 small">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="rememberMe" />
+            <label class="form-check-label" for="rememberMe">Remember me</label>
+          </div>
+          <a href="#" class="text-decoration-underline">Forgot password?</a>
         </div>
-        <button type="button" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-          Sign in
-        </button>
+
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
       </form>
-      <p class="text-sm text-white text-center mt-4">
+
+      <p class="text-center text-dark mt-3 small">
         Don’t have an account?
-        <a (click)="toggleForm = true" class="cursor-pointer text-blue-200 underline">Register here</a>
+        <a (click)="toggleForm = true" class="text-decoration-underline" style="cursor: pointer;">Register here</a>
       </p>
     </ng-template>
   </div>

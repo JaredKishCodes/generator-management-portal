@@ -4,21 +4,24 @@ import { AuthService } from '../../services/auth.service';
 import { Register } from '../../interfaces/register';
 import { Login } from '../../interfaces/login';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  toggleForm : boolean = false;
+  toggleForm: boolean = false;
+  isLoading = false;
   router = inject(Router);
-  
+
   authService = inject(AuthService);
 
-  
+
   registerObj: Register = {
     contactName: '',
     contactAddress: "",
@@ -30,15 +33,15 @@ export class LoginComponent {
     confirmPassword: ''
   }
 
-  loginObj: Login ={
+  loginObj: Login = {
     username: '',
     password: ''
   }
 
 
-  public onRegister(){
+  public onRegister() {
     this.authService.register(this.registerObj).subscribe({
-      next:(res) =>{
+      next: (res) => {
         console.log('Registered Success!', res);
       },
       error: (err) => {
@@ -47,13 +50,20 @@ export class LoginComponent {
     });
   }
 
-  public onLogin(){
+  public onLogin() {
     this.authService.login(this.loginObj).subscribe({
-      next:(res) =>{
-        localStorage.setItem('token',res.token),
-        console.log('Logged in!', res);
+      next: (res) => {
+        this.isLoading = true;
+
+        setTimeout(() => {
+          this.isLoading = false;
+          localStorage.setItem('token', res.token),
+            
+          console.log('Logged in!', res);
+          this.router.navigateByUrl('/home')
+        }, 1000);
       },
-      error: (err)=>{
+      error: (err) => {
         alert("Username not found and/or password");
         console.error('Login error', err)
       }

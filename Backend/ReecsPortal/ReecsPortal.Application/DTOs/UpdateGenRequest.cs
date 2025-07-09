@@ -1,16 +1,19 @@
-﻿
-
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ReecsPortal.Application.DTOs
 {
-    public class GenRequest
-    {
-
+    public class UpdateGenRequest
+    {   
+       
+        public int GenCode { get; set; }
         [Required]
-        public string GenName { get; set; } = string.Empty;
+        public string? GenName { get; set; }
         [Required]
-        public string GenAddress { get; set; } = string.Empty;
+        public string? GenAddress { get; set; }
 
         public string? CreatedBy { get; set; }
         
@@ -22,7 +25,7 @@ namespace ReecsPortal.Application.DTOs
 
         public string? GenFullName { get; set; }
 
-        public string Archived { get; set; } = string.Empty;
+        public string Archived { get; set; } = "0";
         [Required]
         public int? CapacityMw { get; set; }
         [Required]

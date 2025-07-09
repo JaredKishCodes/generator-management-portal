@@ -14,15 +14,32 @@ namespace ReecsPortal.Infrastructure.Repositories
     {
         public async Task<TblGenerator> CreateGeneratorAsync(TblGenerator generator)
         {
-           await _context.TblGenerators.AddAsync(generator);
-           await _context.SaveChangesAsync();
-           return generator;
-                
+            try
+            {
+                if (generator == null)
+                    throw new ArgumentNullException(nameof(generator));
+
+                await _context.TblGenerators.AddAsync(generator);
+                await _context.SaveChangesAsync();
+
+                return generator;
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log or inspect this in debugger
+                Console.WriteLine("DB Update Exception: " + ex.Message);
+                if (ex.InnerException != null)
+                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
+
+                throw; // rethrow to bubble up if needed
+            }
         }
 
-        public async Task<bool> DeleteGeneratorAsync(int id)
+
+
+        public async Task<bool> DeleteGeneratorAsync(int genCode)
         {
-            var gen = await _context.TblGenerators.FindAsync(id);
+            var gen = await _context.TblGenerators.FirstOrDefaultAsync(g => g.GenCode == genCode);
             if (gen != null) 
             { 
                 _context.TblGenerators.Remove(gen);
@@ -39,16 +56,28 @@ namespace ReecsPortal.Infrastructure.Repositories
             
         }
 
-        public async Task<TblGenerator> GetGeneratorByCodeAsync(TblGenerator generator)
+        public async Task<TblGenerator> GetGeneratorByCodeAsync(int genCode)
         {
-           return await _context.TblGenerators.FirstOrDefaultAsync(g => g.GenCode == generator.GenCode);
+           return await _context.TblGenerators.FirstOrDefaultAsync(g => g.GenCode == genCode);
         }
 
-        public async Task<TblGenerator> UpdateGeneratorAsync(TblGenerator generator)
+        public async Task<TblGenerator?> UpdateGeneratorAsync(TblGenerator generator, int genCode)
         {
-            _context.TblGenerators.Update(generator);
+            var existingGen = await _context.TblGenerators
+                .FirstOrDefaultAsync(g => g.GenCode == genCode); // or use primary key ID
+
+            if (existingGen == null)
+                return null;
+
+            // Update fields
+            existingGen.GenName = generator.GenName;
+            existingGen.GenAddress = generator.GenAddress;
+            existingGen.CapacityMw = generator.CapacityMw;
+            existingGen.RegPrice = generator.RegPrice;
+
             await _context.SaveChangesAsync();
-            return generator;
+            return existingGen;
         }
+
     }
 }

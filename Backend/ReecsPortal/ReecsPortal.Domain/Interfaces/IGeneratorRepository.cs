@@ -8,10 +8,10 @@ namespace ReecsPortal.Domain.Interfaces
     {
         Task<IEnumerable<TblGenerator>> GetAllGeneratorsAsync();
 
-        Task<TblGenerator> GetGeneratorByCodeAsync(TblGenerator generator);
+        Task<TblGenerator> GetGeneratorByCodeAsync(int genCode);
         Task<TblGenerator> CreateGeneratorAsync(TblGenerator generator);
-        Task<TblGenerator> UpdateGeneratorAsync(TblGenerator generator);
-        Task<bool> DeleteGeneratorAsync(int id);
+        Task<TblGenerator> UpdateGeneratorAsync(TblGenerator generator, int genCode);
+        Task<bool> DeleteGeneratorAsync(int genCode);
 
     }
 }
