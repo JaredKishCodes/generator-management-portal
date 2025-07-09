@@ -1,7 +1,7 @@
 # ⚡ Generator Management Portal
 
-A full-stack web application for managing backup power generators in facilities.  
-Built with **Angular** for the frontend and **ASP.NET Core (.NET)** for the backend.
+A full-stack generator tracking system built for a real-world company to help manage and monitor their backup power generators across multiple facilities.  
+This solution was developed using **Angular 19** for the frontend and **ASP.NET Core (.NET 9)** for the backend, following clean architecture and scalable best practices.
 
 ---
 
