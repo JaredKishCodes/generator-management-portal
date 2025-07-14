@@ -2,7 +2,7 @@
 
 A full-stack generator tracking system built for a real-world company to help manage and monitor their backup power generators across multiple facilities.  
 This solution was developed using **Angular 19** for the frontend and **ASP.NET Core (.NET 9)** for the backend, following clean architecture and scalable best practices.
-
+PS:(not finished yet)
 ---
 
 ## 📦 Tech Stack
