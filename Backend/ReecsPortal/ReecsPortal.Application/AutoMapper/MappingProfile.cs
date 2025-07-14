@@ -2,7 +2,9 @@
 using AutoMapper;
 using ReecsPortal.Application.DTOs;
 using ReecsPortal.Application.DTOs.Auth;
+using ReecsPortal.Application.DTOs.Customer;
 using ReecsPortal.Application.Generators.Query;
+using ReecsPortal.Domain.DTradeModels;
 using ReecsPortal.Infrastructure.DTradeModels;
 
 namespace ReecsPortal.Application.AutoMapper
@@ -18,6 +20,8 @@ namespace ReecsPortal.Application.AutoMapper
             CreateMap<TblGenerator, GenResponse>().ReverseMap();
             CreateMap<TblGenerator, GenRequest>().ReverseMap();
             CreateMap<UpdateGenRequest, TblGenerator>().ReverseMap();
+            CreateMap<TblCustomer, CustResponse>().ReverseMap();
+            CreateMap<TblCustomer,UpdateCustRequest>().ReverseMap();
 
         }
     }

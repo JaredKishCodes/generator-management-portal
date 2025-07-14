@@ -10,6 +10,7 @@ using ReecsPortal.Domain.Interfaces;
 using ReecsPortal.Infrastructure.Auth.Persistence;
 using ReecsPortal.Infrastructure.Identity.Service;
 using ReecsPortal.Infrastructure.Repositories;
+using ReecsPortal.Domain.DTradeModels;
 
 namespace ReecsPortal.Infrastructure
 {
@@ -25,6 +26,7 @@ namespace ReecsPortal.Infrastructure
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
             services.AddScoped<IGeneratorRepository, GeneratorRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 
 

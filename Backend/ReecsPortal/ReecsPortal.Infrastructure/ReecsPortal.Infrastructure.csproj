@@ -26,6 +26,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ReecsPortal.Application\ReecsPortal.Application.csproj" />
+	  <ProjectReference Include="..\ReecsPortal.Domain\ReecsPortal.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

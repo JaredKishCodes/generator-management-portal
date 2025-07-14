@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 
-namespace ReecsPortal.Infrastructure.DTradeModels;
+namespace ReecsPortal.Domain.DTradeModels;
 
 public partial class TblCustomer
 {
@@ -13,7 +12,7 @@ public partial class TblCustomer
 
     public string? CreatedBy { get; set; }
 
-    public DateOnly? CreatedDate { get; set; }
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
     public string? ModifiedBy { get; set; }
 
