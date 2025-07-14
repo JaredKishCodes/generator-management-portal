@@ -12,7 +12,7 @@ namespace ReecsPortal.Application.DTOs.Customer
         public string CustAddress { get; set; } = string.Empty;
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         [Required]
-        public string? CreatedBy { get; set; }
+        public string? CreatedBy { get; set; } 
         [Required]
         public string? CustFullName { get; set; }
         public string Archived { get; set; } = string.Empty;

@@ -44,7 +44,7 @@ namespace ReecsPortal.API.Controllers
             return CreatedAtAction(nameof(GetCustomerById), new { custCode = createdCustomer.CustCode }, createdCustomer);
         }
         [HttpPut("{custCode:int}")]
-        public async Task<ActionResult<CustResponse>> UpdateCustomer(int custCode, [FromBody] CustRequest customerRequest)
+        public async Task<ActionResult<CustResponse>> UpdateCustomer(int custCode, [FromBody] UpdateCustRequest customerRequest)
         {
             if (customerRequest == null)
             {

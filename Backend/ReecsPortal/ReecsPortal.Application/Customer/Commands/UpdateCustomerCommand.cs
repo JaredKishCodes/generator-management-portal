@@ -11,7 +11,7 @@ using ReecsPortal.Domain.Interfaces;
 
 namespace ReecsPortal.Application.Customer.Commands
 {
-    public record UpdateCustomerCommand(int custCode, CustRequest custRequest) : IRequest<CustResponse>;
+    public record UpdateCustomerCommand(int custCode, UpdateCustRequest custRequest) : IRequest<CustResponse>;
 
     public class UpdateCustomerCommandHandler(ICustomerRepository customerRepository, IMapper mapper)
      : IRequestHandler<UpdateCustomerCommand, CustResponse>

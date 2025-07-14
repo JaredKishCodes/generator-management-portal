@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICustomer } from '../../interfaces/ICustomer';
+import { ICustomerRequest } from '../../interfaces/Customer/ICustomerRequest';
+import { ICustomerResponse } from '../../interfaces/Customer/ICustomerResponse';
+import { IUpdateCustomerRequest } from '../../interfaces/Customer/IUpdateCustomerRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +12,16 @@ export class CustomerService {
   apiUrl : string = 'https://localhost:7162/api/Customer';
   constructor(private http: HttpClient) { }
 
-  getAllCustomers():Observable<ICustomer[]>{
-   return this.http.get<ICustomer[]>(`${this.apiUrl}`);
+  getAllCustomers():Observable<ICustomerResponse[]>{
+   return this.http.get<ICustomerResponse[]>(`${this.apiUrl}`);
   }
   
-  createCustomer(customer : ICustomer) : Observable<ICustomer>{
-    return this.http.post<ICustomer>(`${this.apiUrl}`,customer);
+  createCustomer(customer : ICustomerRequest) : Observable<ICustomerResponse>{
+    return this.http.post<ICustomerResponse>(`${this.apiUrl}`,customer);
   }
 
-  updateCustomer(custCode:number,customer:ICustomer): Observable<ICustomer>{
-    return this.http.put<ICustomer>(`${this.apiUrl}/${custCode}`,customer);
+  updateCustomer(custCode:number,customer:IUpdateCustomerRequest): Observable<ICustomerResponse>{
+    return this.http.put<ICustomerResponse>(`${this.apiUrl}/${custCode}`,customer);
   }
 
   deleteCustomer(custCode:number): Observable<boolean>{
