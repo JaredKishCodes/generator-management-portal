@@ -61,7 +61,7 @@ namespace ReecsPortal.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An unexpected error occurred.");
+                return StatusCode(500, ex.Message);
             }
         }
 

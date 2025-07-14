@@ -17,7 +17,7 @@ namespace ReecsPortal.Application.Customer.Commands
             if (request == null) 
                 throw new ArgumentNullException(nameof(request),"Customer request cannot be null");
 
-            var customer =  mapper.Map<TblCustomer>(request);
+            var customer =  mapper.Map<TblCustomer>(request.customerRequest);
             if (customer == null)
                 throw new InvalidOperationException("Failed to map customer request to TblCustomer");
             

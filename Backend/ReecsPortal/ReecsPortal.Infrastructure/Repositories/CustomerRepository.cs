@@ -56,7 +56,7 @@ namespace ReecsPortal.Infrastructure.Repositories
             existingCustomer.DemandMw = updatedCustomer.DemandMw;
             existingCustomer.RegPrice = updatedCustomer.RegPrice;
             existingCustomer.ModifiedBy = updatedCustomer.ModifiedBy;
-            existingCustomer.ModifiedDate = DateTime.UtcNow;
+            existingCustomer.ModifiedDate = updatedCustomer.ModifiedDate;
 
             await _context.SaveChangesAsync();
             return existingCustomer;

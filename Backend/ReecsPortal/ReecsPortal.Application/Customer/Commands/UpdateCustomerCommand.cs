@@ -13,26 +13,24 @@ namespace ReecsPortal.Application.Customer.Commands
 {
     public record UpdateCustomerCommand(int custCode, CustRequest custRequest) : IRequest<CustResponse>;
 
-    public class UpdateCustomerCommandHandler(ICustomerRepository customerRepository,IMapper mapper)
-        : IRequestHandler<UpdateCustomerCommand, CustResponse>
+    public class UpdateCustomerCommandHandler(ICustomerRepository customerRepository, IMapper mapper)
+     : IRequestHandler<UpdateCustomerCommand, CustResponse>
     {
         public async Task<CustResponse> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
             var existingCustomer = await customerRepository.GetCustomerByIdAsync(request.custCode);
-            if (existingCustomer == null) 
-                    throw new ArgumentNullException(nameof(existingCustomer),"Customer id not found");
+            if (existingCustomer == null)
+                throw new KeyNotFoundException($"Customer with ID {request.custCode} not found");
 
-            var mappedCustomer = mapper.Map<TblCustomer>(existingCustomer);
-            if (mappedCustomer == null)
-                throw new InvalidOperationException("Failed to map existing customer to TblCustomer");
+            mapper.Map(request.custRequest, existingCustomer);
 
-            var updatedCustomer = customerRepository.UpdateCustomer(mappedCustomer, request.custCode);
+        
+            var updatedCustomer = await customerRepository.UpdateCustomer(existingCustomer, request.custCode);
             if (updatedCustomer == null)
                 throw new InvalidOperationException("Failed to update customer in repository");
-
-             return mapper.Map<CustResponse>(updatedCustomer);
-
-
+          
+            return mapper.Map<CustResponse>(updatedCustomer);
         }
     }
+
 }

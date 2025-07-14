@@ -21,6 +21,7 @@ namespace ReecsPortal.Application.AutoMapper
             CreateMap<TblGenerator, GenRequest>().ReverseMap();
             CreateMap<UpdateGenRequest, TblGenerator>().ReverseMap();
             CreateMap<TblCustomer, CustResponse>().ReverseMap();
+            CreateMap<TblCustomer, CustRequest>().ReverseMap();
             CreateMap<TblCustomer,UpdateCustRequest>().ReverseMap();
 
         }
