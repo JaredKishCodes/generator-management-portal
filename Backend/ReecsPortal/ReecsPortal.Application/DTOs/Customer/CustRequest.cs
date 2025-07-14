@@ -18,10 +18,10 @@ namespace ReecsPortal.Application.DTOs.Customer
         public string Archived { get; set; } = string.Empty;
         [Required]
 
-        public decimal DemandMw { get; set; }
+        public double? DemandMw { get; set; }
         [Required]
-        public decimal RegPrice { get; set; }
-        
+        public double? RegPrice { get; set; }
+
     }
 }
 

@@ -7,7 +7,8 @@ namespace ReecsPortal.Application.DTOs.Customer
         public int CustCode { get; set; }
         public string CustName { get; set; } = string.Empty;
         public string CustAddress { get; set; } = string.Empty;
-        public decimal DemandMw { get; set; }
-        public decimal RegPrice { get; set; }
+        public double? DemandMw { get; set; }
+
+        public double? RegPrice { get; set; }
     }
 }

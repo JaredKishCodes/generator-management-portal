@@ -1,0 +1,131 @@
+@if (isLoading) {
+  <div
+    class="position-fixed top-0 start-50 translate-middle-x mt-3 bg-white border rounded shadow px-4 py-2 text-dark text-center z-3"
+    style="min-width: 200px;"
+  >
+    <div class="spinner-border spinner-border-sm text-success me-2" role="status"></div>
+    Created
+  </div>
+}
+
+
+
+<!-- Header -->
+<div class="d-flex align-items-center justify-content-between mx-4 my-3">
+  <h1 class="fw-bold fs-4 fst-serif mb-0">Customer Load List</h1>
+  <button class="btn btn-success" (click)="showModal = true">
+    Register New Load
+  </button>
+</div>
+
+<!-- Table -->
+<div class="container-fluid px-4">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover bg-white shadow">
+      <thead class="table-success">
+        <tr class="text-center align-middle">
+          <th scope="col">Cust Code</th>
+          <th scope="col">Load Customer Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Demand Peak</th>
+          <th scope="col">Contract Price (REG)</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cust of customerList">
+          <th scope="row" class="text-center align-middle">{{ cust.custCode }}</th>
+          <td class="text-center align-middle">{{ cust.custName }}</td>
+          <td class="text-center align-middle">{{ cust.custAddress }}</td>
+          <td class="text-center align-middle">{{ cust.demandMw }}</td>
+          <td class="text-center align-middle">{{ cust.regPrice }}</td>
+          <td class="text-center align-middle">
+            <i (click)= "openEditModal(cust)" class="fa-solid fa-pen-to-square text-primary me-2 cursor-pointer"></i>
+            <i   class="fa-solid fa-trash text-danger me-2 cursor-pointer"></i>
+            <i class="fa-solid fa-chart-simple text-success cursor-pointer"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Register New Modal -->
+<div class="modal fade show d-block" tabindex="-1" *ngIf="showModal" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add new Customer</h5>
+        <button type="button" class="btn-close" (click)="showModal = false"></button>
+      </div>
+      <div class="modal-body px-4">
+        
+        <form>
+          <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control mb-2" id="customerName" 
+              placeholder="Enter customer name " name="customerName" [(ngModel)]="customerObj.custName">
+          </div>
+          <div class="form-group">
+            <label for="customerAddress">Customer Address</label>
+            <input type="text" class="form-control mb-2" name="customerAddress" id="customerAddress" placeholder="Enter customer address" [(ngModel)]="customerObj.custAddress">
+          </div>
+           <div class="form-group">
+            <label for="generatorCapacity">Demand Peak</label>
+            <input type="text" class="form-control mb-2" name="capacityMw" id="generatorCapacity" placeholder="Enter demand peak" [(ngModel)]="customerObj.demandMw">
+          </div>
+           <div class="form-group">
+            <label for="contractPrice">Contract Price</label>
+            <input type="text" class="form-control" name="contractPrice" id="contractPrice" placeholder="Enter contract price" [(ngModel)]="customerObj.regPrice">
+          </div>
+          
+          
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary px-4" (click)="showModal = false">Cancel</button>
+          <button type="button" class="btn btn-primary px-4" >Save</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- update gen Modal -->
+<div class="modal fade show d-block" tabindex="-1" *ngIf="showModal2" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Customer </h5>
+        <button type="button" class="btn-close" (click)="showModal2 = false"></button>
+      </div>
+      <div class="modal-body px-4">
+        
+        <form>
+           <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control mb-2" id="customerName" 
+              placeholder="Enter customer name " name="customerName" [(ngModel)]="customerObj.custName">
+          </div>
+          <div class="form-group">
+            <label for="customerAddress">Customer Address</label>
+            <input type="text" class="form-control mb-2" name="customerAddress" id="customerAddress" placeholder="Enter customer address" [(ngModel)]="customerObj.custAddress">
+          </div>
+           <div class="form-group">
+            <label for="generatorCapacity">Demand Peak</label>
+            <input type="text" class="form-control mb-2" name="capacityMw" id="generatorCapacity" placeholder="Enter demand peak" [(ngModel)]="customerObj.demandMw">
+          </div>
+           <div class="form-group">
+            <label for="contractPrice">Contract Price</label>
+            <input type="text" class="form-control" name="contractPrice" id="contractPrice" placeholder="Enter contract price" [(ngModel)]="customerObj.regPrice">
+          </div>
+          
+          
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary px-4" (click)="showModal2 = false">Cancel</button>
+          <button type="button" class="btn btn-primary px-4" >Save</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

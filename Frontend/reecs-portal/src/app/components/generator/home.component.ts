@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { GeneratorService } from '../../services/generator.service';
+import { GeneratorService } from '../../services/generator/generator.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Gen } from '../../interfaces/generator';

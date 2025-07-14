@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Register } from '../../interfaces/register';
 import { Login } from '../../interfaces/login';
 import { Router } from '@angular/router';
@@ -60,7 +60,7 @@ export class LoginComponent {
           localStorage.setItem('token', res.token),
             
           console.log('Logged in!', res);
-          this.router.navigateByUrl('/home')
+          this.router.navigateByUrl('/generator')
         }, 1000);
       },
       error: (err) => {
