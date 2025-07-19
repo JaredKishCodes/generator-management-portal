@@ -1,0 +1,62 @@
+# Node
+node_modules/
+dist/
+.env
+
+# Angular
+.angular/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build outputs
+bin/
+obj/
+
+# Visual Studio
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Others
+.DS_Store
+Thumbs.db
+
+
+
+[Required]
+[StringLength(100)]
+public string ContactName { get; set; } = string.Empty;
+
+[Required]
+public string? ContactAddress { get; set; }
+
+[Required]
+[Phone]
+public string? ContactNumber { get; set; }
+
+[Required]
+public AccessType AccessType { get; set; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scaffold-DbContext "Data Source=localhost\\;Initial Catalog=DTRADE;Integrated Security=SSPI;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False" 
+Microsoft.EntityFrameworkCore.SqlServer 
+-OutputDir DTradeModels 
+-Context DtradeDbContext 
+-Force 
+-ExcludeTables tblUsers

@@ -8,6 +8,10 @@ obj/
 *.dll
 *.cache
 
+**/appsettings.Development.json
+
+
+
 # Node/Angular build
 node_modules/
 dist/
